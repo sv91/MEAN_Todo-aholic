@@ -1,6 +1,6 @@
 {
   "name"          : "nod-todo",
-  "version"       : "0.0.0.0",
+  "version"       : "0.0.0",
   "description"   : "Simple todo application.",
   "main"          : "server.js",
   "author"        : "sv91",
