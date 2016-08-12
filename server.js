@@ -1,7 +1,7 @@
 // set up ======================================================
 var express         = require('express');
 var app             = express();
-var mangoose        = require('mangoose');
+var mangoose        = require('mongoose');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
@@ -15,6 +15,11 @@ app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
 app.use(methodOverride());
+
+// define model ================================================
+var Todo = mongoose('Todo', {
+  text : String
+})
 
 // listen (start app with node server.js) ======================
 app.listen(8080);
