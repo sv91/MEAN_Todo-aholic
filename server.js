@@ -1,13 +1,13 @@
 // set up ======================================================================
 var express         = require('express');
 var app             = express();
-var mangoose        = require('mongoose');
+var mongoose        = require('mongoose');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 
 // configuration ===============================================================
-mangoose.connect('mongodb://localhost:27017/node-todo');
+mongoose.connect('mongodb://localhost:27017/node-todo');
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
@@ -17,7 +17,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
 app.use(methodOverride());
 
 // define model ================================================================
-var Todo = mongoose('Todo', {
+var Todo = mongoose.model('Todo', {
   text : String
 })
 
@@ -30,7 +30,7 @@ console.log("App listening on port 8080");
   //api ------------------------------------------------------------------------
   // get all todos
   app.get('/api/todos', function(req, res){
-    // use mangoose to get all todos in the database
+    // use mongoose to get all todos in the database
     Todo.find(function(err, todos){
       // if there is an error retrieving, send the error. Nothing after res.send
       if (err)
